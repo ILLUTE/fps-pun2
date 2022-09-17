@@ -127,18 +127,19 @@ public class EnemyManager : MonoBehaviour
             {
                 return;
             }
-            PlayerManager player = enemies[0].gameObject.GetComponent<PlayerManager>();
 
-            if (player != null)
+            for (int i = 0; i < enemies.Length; i++)
             {
-                enemyAnimator.SetTrigger("isAttacking");
-                Health health = player.playerHealth;
-                health.UpdateHealth(-1 * damage);
-                attackTimer = attackTime;
-                canAttack = false;
+                if (enemies[i].GetComponent<Health>() && enemies[i].GetComponent<EnemyManager>() == null)
+                {
+                    enemyAnimator.SetTrigger("isAttacking");
+                    Health health = enemies[i].GetComponent<Health>();
+                    health.UpdateHealth(-1 * damage);
+                    attackTimer = attackTime;
+                    canAttack = false;
+                }
             }
         }
-
 
 
         enemyAnimator.SetBool(IsRunningParameter, m_Agent.velocity.magnitude > 1);

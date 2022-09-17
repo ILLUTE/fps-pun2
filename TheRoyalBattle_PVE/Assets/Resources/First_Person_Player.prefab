@@ -6458,17 +6458,17 @@ Canvas:
   m_GameObject: {fileID: 398583588302917108}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 182252462652382583}
-  m_PlaneDistance: 0.15
-  m_PixelPerfect: 0
+  m_PlaneDistance: 0.125
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!114 &3979983306525844283
 MonoBehaviour:
@@ -7876,7 +7876,7 @@ GameObject:
   - component: {fileID: 7742777814152417195}
   - component: {fileID: 7742777814152417192}
   - component: {fileID: 5951555702927007310}
-  - component: {fileID: 1232571385}
+  - component: {fileID: 6234891726176617451}
   m_Layer: 7
   m_Name: First_Person_Player
   m_TagString: Player
@@ -7947,7 +7947,7 @@ MonoBehaviour:
   IsGrounded: 0
   gravity: -9.81
   photonView: {fileID: 7742777814152417192}
-  floatingJoystick: {fileID: 1850939786246462016}
+  floatingJoystick: {fileID: 6780304899627090160}
   MobileInput: {fileID: 3550932219010629371}
 --- !u!114 &7742777814152417194
 MonoBehaviour:
@@ -8048,35 +8048,24 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
---- !u!114 &1232571385
+--- !u!114 &6234891726176617451
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7712049599389220460}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70178b68f11614b1f9d3be853a76b41d, type: 3}
+  m_Script: {fileID: 11500000, guid: 71467ec8154ad4638b6bbca1af3094ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 3.5
-  sprintSpeed: 5
-  currentSpeed: 0
-  jumpHeight: 2.5
-  airControl: 0
-  IsJumping: 0
-  controller: {fileID: 7742777814152417196}
-  groundCheck: {fileID: 182252463849440081}
-  groundRadius: 0.4
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  IsGrounded: 0
-  gravity: -9.81
-  photonView: {fileID: 7742777814152417192}
-  floatingJoystick: {fileID: 0}
-  MobileInput: {fileID: 0}
+  playerLocomotion: {fileID: 7742777814152417199}
+  playerMouseLook: {fileID: 8291233431919405288}
+  weapon: {fileID: 2684842556047748017}
+  characterController: {fileID: 7742777814152417196}
+  cameraAim: {fileID: 7742777814152417195}
+  mobileInput: {fileID: 3550932219010629371}
 --- !u!1 &7779325134438963918
 GameObject:
   m_ObjectHideFlags: 0
@@ -8370,6 +8359,39 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3395984323833744506}
     m_Modifications:
+    - target: {fileID: 2069244312618711805, guid: 275dc89993d734787bef6ac30070fe02,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 54628aafa20f64b40ae661038ee7abf0,
+        type: 3}
+    - target: {fileID: 2069244313372622584, guid: 275dc89993d734787bef6ac30070fe02,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2069244313372622584, guid: 275dc89993d734787bef6ac30070fe02,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2069244313372622587, guid: 275dc89993d734787bef6ac30070fe02,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5eda94a9dcf71e445ad17e3c065d1460,
+        type: 3}
+    - target: {fileID: 3054277992969600921, guid: 275dc89993d734787bef6ac30070fe02,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054277992969600921, guid: 275dc89993d734787bef6ac30070fe02,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 851d47e9be8ce44588de1ad73dddcbf8,
+        type: 3}
     - target: {fileID: 3054277992969600999, guid: 275dc89993d734787bef6ac30070fe02,
         type: 3}
       propertyPath: m_Delegates.Array.size
@@ -8687,16 +8709,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 275dc89993d734787bef6ac30070fe02, type: 3}
---- !u!114 &1850939786246462016 stripped
+--- !u!114 &6780304899627090160 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6557467768991835205, guid: 275dc89993d734787bef6ac30070fe02,
+  m_CorrespondingSourceObject: {fileID: 2069244313372622581, guid: 275dc89993d734787bef6ac30070fe02,
     type: 3}
   m_PrefabInstance: {fileID: 4805083365001625093}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a47f546fc70ec8428172694e78e4288, type: 3}
+  m_Script: {fileID: 11500000, guid: 45977bbae16431c46a013576a1aea384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &7551952166045040835 stripped

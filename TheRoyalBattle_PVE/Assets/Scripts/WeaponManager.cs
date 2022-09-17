@@ -41,9 +41,14 @@ public class WeaponManager : MonoBehaviour
 
     private void Awake()
     {
-        if (playerCam == null)
+        if (playerCam == null && !PhotonNetwork.InRoom)
         {
             playerCam = Camera.main;
+        }
+
+        if(!photonView.IsMine)
+        {
+            this.enabled = false;
         }
     }
 

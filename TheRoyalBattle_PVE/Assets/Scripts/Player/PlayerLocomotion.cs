@@ -69,7 +69,7 @@ public class PlayerLocomotion : MonoBehaviour
         }
     }
 
-    public FloatingJoystick floatingJoystick;
+    public FixedJoystick floatingJoystick;
     public Canvas MobileInput;
 
     private void Start()
