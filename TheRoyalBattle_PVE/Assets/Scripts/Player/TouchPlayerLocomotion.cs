@@ -89,7 +89,7 @@ public class TouchPlayerLocomotion : MonoBehaviour
         }
 
         GetTouchInput();
-#if PC
+#if MYPC
         m_AxisMovement.x = Input.GetAxis("Horizontal");
 
         m_AxisMovement.y = Input.GetAxis("Vertical");

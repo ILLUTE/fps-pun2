@@ -45,10 +45,14 @@ public class PlayerLocomotion : MonoBehaviour
 
     [SerializeField]
     private float gravity = -9.81f;
+
+    [SerializeField]
+    private Animator m_ThirdPersonAnimator;
     // -----------------------------------
     [Space(20)]
     private Vector2 m_AxisMovement;
 
+    private Vector2 m_ServerMovement;
 
 
     private Vector3 verticalVelocity;
@@ -74,28 +78,19 @@ public class PlayerLocomotion : MonoBehaviour
 
     private void Start()
     {
-        if(!m_PhotonView.IsMine)
-        {
-            this.enabled = false;
-            return;
-        }
-#if PC
+#if MYPC
         MobileInput.gameObject.SetActive(false);
 #else
-        if (m_PhotonView.IsMine)
-        {
-            MobileInput.gameObject.SetActive(true);
-        }
+        MobileInput.gameObject.SetActive(true);
 #endif
     }
     private void Update()
     {
-
-        if(PhotonNetwork.InRoom && !m_PhotonView.IsMine)
+        if (PhotonNetwork.InRoom && !m_PhotonView.IsMine)
         {
             return;
         }
-#if PC
+#if MYPC
         m_AxisMovement.x = Input.GetAxis("Horizontal");
 
         m_AxisMovement.y = Input.GetAxis("Vertical");
@@ -109,6 +104,8 @@ public class PlayerLocomotion : MonoBehaviour
         m_AxisMovement.x = floatingJoystick.Horizontal;
         m_AxisMovement.y = floatingJoystick.Vertical;
 #endif
+        m_ThirdPersonAnimator.SetBool("IsMoving", m_AxisMovement.magnitude > 0);
+
         CheckForRunning();
     }
 
@@ -142,6 +139,10 @@ public class PlayerLocomotion : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(PhotonNetwork.InRoom && !m_PhotonView.IsMine)
+        {
+            return;
+        }
         IsGrounded = Physics.CheckSphere(groundCheck.position, groundRadius, groundLayer);
 
         IsJumping = !IsGrounded;

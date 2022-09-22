@@ -33,7 +33,7 @@ public class EnemyManager : MonoBehaviour
 
     private float attackTimer;
 
-    private const float attackTime = 0.75f;
+    private const float attackTime = 2.5f;
 
     public LayerMask playerMask;
 
@@ -132,6 +132,7 @@ public class EnemyManager : MonoBehaviour
             {
                 if (enemies[i].GetComponent<Health>() && enemies[i].GetComponent<EnemyManager>() == null)
                 {
+                    m_Agent.velocity = Vector3.zero;
                     enemyAnimator.SetTrigger("isAttacking");
                     Health health = enemies[i].GetComponent<Health>();
                     health.UpdateHealth(-1 * damage);

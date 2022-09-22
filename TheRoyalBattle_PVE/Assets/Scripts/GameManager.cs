@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         if (!PhotonNetwork.InRoom || (PhotonNetwork.IsMasterClient && m_PhotonView.IsMine))
         {
-            if (round <=0 && PhotonNetwork.CurrentRoom.PlayerCount < 2)
+            if (round <=0 && PhotonNetwork.CurrentRoom.PlayerCount < 1)
             {
                 return;
             }

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
+    [SerializeField]
     public Camera playerCam;
 
     public float weaponRange;
@@ -41,11 +42,6 @@ public class WeaponManager : MonoBehaviour
 
     private void Awake()
     {
-        if (playerCam == null && !PhotonNetwork.InRoom)
-        {
-            playerCam = Camera.main;
-        }
-
         if(!photonView.IsMine)
         {
             this.enabled = false;
@@ -69,7 +65,7 @@ public class WeaponManager : MonoBehaviour
         {
             return;
         }
-#if PC
+#if MYPC
         if (Input.GetMouseButton(0))
         {
             IsShooting = true;
@@ -148,5 +144,10 @@ public class WeaponManager : MonoBehaviour
             hitParticle.Emit(10);
             Destroy(hitParticle.gameObject, 1f);
         }
+    }
+
+    public void SyncShootVFX()
+    {
+
     }
 }

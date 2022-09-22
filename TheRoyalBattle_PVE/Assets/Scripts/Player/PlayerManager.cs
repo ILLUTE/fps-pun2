@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public CameraAim m_CameraAim;
-    public Health playerHealth;
 
     public PhotonView photonView;
 

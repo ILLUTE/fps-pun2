@@ -11,7 +11,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         get
         {
-            if(instance == null)
+            if (instance == null)
             {
                 instance = FindObjectOfType<RoomManager>();
             }
@@ -22,7 +22,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        if(Instance != this)
+        if (Instance != this)
         {
             Destroy(this.gameObject);
             return;
@@ -45,11 +45,11 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-    private void OnSceneLoaded(Scene scene,LoadSceneMode loadMode)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode loadMode)
     {
         Vector3 spawnPoint = new Vector3(Random.Range(-3, 3), 2, Random.Range(-3, 3));
 
-        if(PhotonNetwork.InRoom)
+        if (PhotonNetwork.InRoom)
         {
             PhotonNetwork.Instantiate("First_Person_Player", spawnPoint, Quaternion.identity);
         }

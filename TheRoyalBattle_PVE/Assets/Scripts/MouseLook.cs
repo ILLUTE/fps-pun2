@@ -11,11 +11,14 @@ public class MouseLook : MonoBehaviour
     private float mouseSensitivity = 100.0f;
 
     [SerializeField]
-    private Transform playerBody;
+    private Transform playerBody, characterBody;
+
+    [SerializeField]
+    private Transform childPlayer;
 
     private float rollAxis = 0.0f;
 
-    public PhotonView photonView;
+    public PhotonView m_PhotonView;
 
     private int rightFingerId = -1;
 
@@ -24,25 +27,33 @@ public class MouseLook : MonoBehaviour
 
     private Vector2 startPosition;
     private Touch cachedTouch;
+
+    public bool IsNonPlayer;
+
     private void Start()
     {
-        if (!photonView.IsMine)
+        if (!m_PhotonView.IsMine)
         {
             this.enabled = false;
+            IsNonPlayer = true;
+        }
+        else
+        {
+            IsNonPlayer = false;
         }
         rightFingerId = -1;
-#if PC
+#if MYPC
         Cursor.lockState = CursorLockMode.Locked;
 #endif
     }
 
     void Update()
     {
-        if (PhotonNetwork.InRoom && !photonView.IsMine)
+        if (PhotonNetwork.InRoom && !m_PhotonView.IsMine)
         {
             return;
         }
-#if !PC
+#if !MYPC
         for (int i = 0; i < Input.touchCount; i++)
         {
             Touch t = Input.GetTouch(i);
@@ -85,7 +96,14 @@ public class MouseLook : MonoBehaviour
         rollAxis -= mouseY;
         rollAxis = Mathf.Clamp(rollAxis, -90, 90);
 
-        transform.localRotation = Quaternion.Euler(rollAxis, 0, 0);
-        playerBody.Rotate(Vector3.up * mouseX);
+        if (!IsNonPlayer)
+        {
+            childPlayer.localRotation = Quaternion.Euler(rollAxis, 0, 0);
+            playerBody.Rotate(Vector3.up * mouseX);
+        }
+        else
+        {
+            characterBody.Rotate(Vector3.up * mouseX);
+        }
     }
 }

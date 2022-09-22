@@ -11,6 +11,7 @@ public class PhotonViewModules : MonoBehaviour
     public CharacterController characterController;
     public CameraAim cameraAim;
     public Canvas mobileInput;
+    public PhotonTransformView photonTransformView;
 
     public void Awake()
     {
@@ -19,7 +20,6 @@ public class PhotonViewModules : MonoBehaviour
             playerLocomotion.enabled = false;
             playerMouseLook.enabled = false;
             weapon.enabled = false;
-         //   characterController.enabled = false;
             cameraAim.enabled = false;
             mobileInput.enabled = false;
         }
